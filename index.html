@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <style media="screen">
+    body {
+
+    background-image: url(nasa2.jpeg);
+    background-repeat:repeat;
+    font-family: 'Quicksand', sans-serif;
+
+    }
+    html , body , .container {
+      height: 100% ;
+    }
+
+  </style>
+  </head>
+  <body>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+    <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Library</li>
+
+  </ol>
+</nav>
+
+    <div id="root"class="container">
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-md-4 col-12" v-for="item in data">
+          <div class="card">
+            <img class="card-img-top" v-bind:src="item.url" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}</h5>
+              <p class="card-text">{{item.explanation}}</p>
+              <a href="https://www.nasa.gov/" class="btn btn-primary">Learn more from nasa</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>    <script>
+
+    var instance =new Vue({
+
+      el:"#root",
+      data:{ data:[]
+
+      },
+      methods:{
+        loadData:function(){
+
+        }
+      }
+    })
+
+    axios.get('https://api.nasa.gov/planetary/apod?api_key=16C7Yk6RNghgMeUBJulMgttxbZygEIEnnpz3mmte&count=10')
+    .then(function(response){
+      instance.data = response.data
+    });
+
+    </script>
+
+  </body>
+</html>
